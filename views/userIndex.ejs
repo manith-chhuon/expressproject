@@ -1,15 +1,65 @@
-<h1>User List </h1>
-<ul>
-    <% users.forEach(user => { %>
-        <li><%= user.username %></li>
-        <li><%= user.email %></li>
-    <% }) %>
-</ul>
+<div class="flex items-center justify-center min-h-screen bg-base-200 p-4">
+  <div class="card w-full max-w-lg bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title text-2xl font-bold mb-4">Create an Account</h2>
+      
+      <form class="grid grid-cols-1 md:grid-cols-2 gap-4" method="POST" action="/create">
+        
+        <div class="form-control">
+          <label class="label"><span class="label-text">First Name</span></label>
+          <input type="text" name="firstName" placeholder="First Name" class="input input-bordered w-full" required />
+        </div>
 
-<h1> Create User</h1>
-<form action="/create" method="POST">
-    <input type="text" name="username" placeholder="Username">
-    <input type="email" name="email" placeholder="Email">
-    <input type="password" name="password" placeholder="Password">
-    <button type="submit">Create</button>
-</form>
+        <div class="form-control">
+          <label class="label"><span class="label-text">Last Name</span></label>
+          <input type="text" name="lastName" placeholder="Last Name" class="input input-bordered w-full" required />
+        </div>
+
+        <div class="form-control md:col-span-2">
+          <label class="label"><span class="label-text">Email</span></label>
+          <input type="email" name="email" placeholder="email@example.com" class="input input-bordered w-full" required />
+        </div>
+
+        <div class="form-control">
+          <label class="label"><span class="label-text">Password</span></label>
+          <input type="password" name="password" placeholder="••••••••" class="input input-bordered w-full" required />
+        </div>
+
+        <div class="form-control">
+          <label class="label"><span class="label-text">Confirm Password</span></label>
+          <input type="password" name="confirmPassword"  placeholder="••••••••" class="input input-bordered w-full" required />
+        </div>
+
+        <div class="form-control md:col-span-1">
+          <label class="label"><span class="label-text">Gender</span></label>
+          <div class="flex gap-4 mt-2">
+            <label class="label cursor-pointer gap-2">
+              <input type="radio" name="gender" class="radio radio-primary" value="male" />
+              <span class="label-text">Male</span>
+            </label>
+            <label class="label cursor-pointer gap-2">
+              <input type="radio" name="gender" class="radio radio-primary" value="female" />
+              <span class="label-text">Female</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-control md:col-span-1">
+          <label class="label"><span class="label-text">Province</span></label>
+          <select class="select select-bordered w-full" name="province">
+            <option disabled selected>Pick your province</option>
+            <option>Kompong Cham</option>
+            <option>Kompong Thom</option>
+            <option>Phnom Penh</option>
+            <option>Siem Reap</option>
+          </select>
+        </div>
+
+        <div class="form-control mt-6 md:col-span-2">
+          <button class="btn btn-primary">Register</button>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+</div>
