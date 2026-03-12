@@ -11,7 +11,8 @@ class User {
         return db.execute('SELECT * FROM users WHERE email = ?', [email]);
     }
     static findUser(firstName) {
-        return db.execute('SELECT * FROM users WHERE first_name LIKE ?', [`%${firstName}%`]);
+        // return db.execute('SELECT * FROM users WHERE first_name LIKE ?', [`%${firstName}%`]);
+        return db.execute('SELECT * FROM users WHERE first_name LIKE "'+firstName+'"');
     }
 }
 export default User;

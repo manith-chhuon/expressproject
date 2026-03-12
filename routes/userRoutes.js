@@ -1,14 +1,20 @@
 import {Router} from 'express';
 const router = Router();
-import { getAllUsers,createUser,login,loginUser,listUser,findUser } from '../controllers/userController.js';    
+import { getCreateUser,createUser,login,loginUser,listUser,findUser } from '../controllers/userController.js';    
 import { isAuth, isGuest } from '../middleware/authMiddleware.js';
 
-router.get('/create', isAuth ,getAllUsers);
+router.get('/', (req, res) => {
+    res.render('index', {
+        layout: 'templates/mains',
+        title: 'Home'
+    });
+});
+router.get('/create', isAuth ,getCreateUser);
 router.post('/create', createUser);
 
 // Public / Guest Only
 router.get('/login',isGuest, login);
-router.post('/login', loginUser);
+router.post('/login',isGuest, loginUser);
 
 // Protected / Auth Only
 router.get('/dashboard', isAuth, listUser);

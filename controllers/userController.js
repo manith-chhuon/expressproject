@@ -1,12 +1,11 @@
 import User from "../models/userModel.js";
 import bcrypt from 'bcrypt';
 
-export async function getAllUsers(req, res) {
+export async function getCreateUser(req, res) {
     try {
-        const [rows] = await User.fetchAll();
-        res.render('userIndex', {
+        res.render('users/userIndex', {
             layout: 'templates/mains',
-            title: 'Users', users: rows });
+            title: 'Users'});
     } catch (error) {
         console.error(error);   
         res.status(500).send('Internal Server Error');
@@ -36,7 +35,7 @@ export async function createUser(req, res) {
 
 export async function login(req, res) {
     try {
-        res.render('login', {
+        res.render('users/login', {
             layout: 'templates/mains',
             title: 'Login'});
     } catch (error) {
@@ -64,9 +63,9 @@ export async function loginUser(req, res) {
 export async function listUser(req, res) {
     try {
         const [rows] = await User.fetchAll();
-        res.render('list', {
+        res.render('users/list', {
             layout: 'templates/mains',
-            title: 'Users', users: rows });
+            title: 'Users', users: rows, userName: req.session.userName });
     } catch (error) {
         console.error(error);   
         res.status(500).send('Internal Server Error');
@@ -78,7 +77,8 @@ export async function findUser(req, res) {
     try {
         const { firstName } = req.body;
         const [rows] = await User.findUser(firstName);
-        res.render('list', {
+        console.log("Search Result:", rows); // Debugging line
+        res.render('users/list', {
             layout: 'templates/mains',
             title: 'Find User', users: rows });
     } catch (error) {
